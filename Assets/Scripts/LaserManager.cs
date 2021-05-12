@@ -14,6 +14,11 @@ public class LaserManager : MonoBehaviour
     public GameObject textFridge1;
     public GameObject textFridge2;
     public GameObject textFridge3;
+    public GameObject textClock1;
+    public GameObject textClock2;
+    public GameObject textClock3;
+    public GameObject clock;
+    public GameObject tvImage;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,10 @@ public class LaserManager : MonoBehaviour
         textFridge1.SetActive(false);
         textFridge2.SetActive(false);
         textFridge3.SetActive(false);
+        textClock1.SetActive(false);
+        textClock2.SetActive(false);
+        textClock3.SetActive(false);
+        tvImage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,22 +48,36 @@ public class LaserManager : MonoBehaviour
             laserLineRenderer.SetPosition(0, startPoint + OVRInput.GetLocalControllerPosition(controllerType));
             laserLineRenderer.SetPosition(1, startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward));
 
-            RaycastHit hit;
-            if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 15f))
+            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
-                if (hit.collider != null)
+                RaycastHit hit;
+                if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 15f))
                 {
-                    if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+                    if (hit.collider != null)
                     {
-                        if (hit.transform.gameObject.name.Equals("PFB_Fridge"))
+                        switch (hit.transform.gameObject.name)
                         {
-                            Debug.Log(hit.transform.gameObject.name);
-                            textFridge1.SetActive(true);
-                            textFridge2.SetActive(true);
-                            textFridge3.SetActive(true);
+                            case "PFB_Fridge":
+                                textFridge1.SetActive(!textFridge1.activeSelf);
+                                textFridge2.SetActive(!textFridge2.activeSelf);
+                                textFridge3.SetActive(!textFridge3.activeSelf);
+                                break;
+                            case "Clock":
+                                textClock1.SetActive(!textClock1.activeSelf);
+                                textClock2.SetActive(!textClock2.activeSelf);
+                                textClock3.SetActive(!textClock3.activeSelf);
+                                break;
+                            case "Text_Clock3":
+                                tvImage.SetActive(!tvImage.activeSelf);
+                                break;
                         }
                     }
                 }
+            }
+
+            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+            {
+                
             }
         }
     }
