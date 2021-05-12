@@ -21,5 +21,9 @@ public class MoveManager : MonoBehaviour
         float y = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y;
         cam.transform.position += (x / 10) * (centereye.transform.right);
         cam.transform.position += (y / 10) * (centereye.transform.forward);
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        {
+            cam.transform.position = new Vector3(-221, 7, 2);
+        }
     }
 }
