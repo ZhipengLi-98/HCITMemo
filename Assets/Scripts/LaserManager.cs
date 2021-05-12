@@ -11,7 +11,9 @@ public class LaserManager : MonoBehaviour
     public float dist;
     private Vector3 startPoint;
     public GameObject centerEye;
-    public GameObject textFridge;
+    public GameObject textFridge1;
+    public GameObject textFridge2;
+    public GameObject textFridge3;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,9 @@ public class LaserManager : MonoBehaviour
         laserLineRenderer.endWidth = laserWidth;
         dist = 10.0f;
         startPoint = new Vector3(0, 1.5f, 0);
-        textFridge.SetActive(true);
+        textFridge1.SetActive(false);
+        textFridge2.SetActive(false);
+        textFridge3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,7 +40,7 @@ public class LaserManager : MonoBehaviour
             laserLineRenderer.SetPosition(1, startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward));
 
             RaycastHit hit;
-            if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 8f))
+            if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 15f))
             {
                 if (hit.collider != null)
                 {
@@ -45,7 +49,9 @@ public class LaserManager : MonoBehaviour
                         if (hit.transform.gameObject.name.Equals("PFB_Fridge"))
                         {
                             Debug.Log(hit.transform.gameObject.name);
-                            textFridge.SetActive(true);
+                            textFridge1.SetActive(true);
+                            textFridge2.SetActive(true);
+                            textFridge3.SetActive(true);
                         }
                     }
                 }
