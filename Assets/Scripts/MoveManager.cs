@@ -23,7 +23,7 @@ public class MoveManager : MonoBehaviour
         cam.transform.position += (y / 10) * (centereye.transform.forward);
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
         {
-            cam.transform.position = new Vector3(-221, 7, 2);
+            cam.transform.position = new Vector3(-115, 5, 2);
         }
     }
 }
