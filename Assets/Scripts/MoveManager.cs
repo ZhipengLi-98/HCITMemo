@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveManager : MonoBehaviour
 {
     public GameObject cam;
     public GameObject centereye;
+    public GameObject textRecord;
+    public GameObject textMilk;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        textMilk.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,6 +27,19 @@ public class MoveManager : MonoBehaviour
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
         {
             cam.transform.position = new Vector3(-115, 5, 2);
+            if (!textRecord.activeSelf)
+            {
+                textMilk.SetActive(true);
+            }
+        }
+        if (cam.transform.position.x < -100)
+        {
+            textRecord.transform.position = cam.transform.position + 10.0f * centereye.transform.forward;
+            textRecord.transform.rotation = Quaternion.LookRotation(centereye.transform.forward, centereye.transform.up);
+            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                textRecord.SetActive(false);
+            }
         }
     }
 }

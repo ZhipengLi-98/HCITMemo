@@ -58,17 +58,24 @@ public class LaserManager : MonoBehaviour
                         switch (hit.transform.gameObject.name)
                         {
                             case "PFB_Fridge":
-                                textFridge1.SetActive(!textFridge1.activeSelf);
-                                textFridge2.SetActive(!textFridge2.activeSelf);
-                                textFridge3.SetActive(!textFridge3.activeSelf);
+                                textFridge1.SetActive(true);
+                                textFridge2.SetActive(true);
+                                textFridge3.SetActive(true);
+                                // textFridge1.SetActive(!textFridge1.activeSelf);
+                                // textFridge2.SetActive(!textFridge2.activeSelf);
+                                // textFridge3.SetActive(!textFridge3.activeSelf);
                                 break;
                             case "Clock":
-                                textClock1.SetActive(!textClock1.activeSelf);
-                                textClock2.SetActive(!textClock2.activeSelf);
-                                textClock3.SetActive(!textClock3.activeSelf);
+                                textClock1.SetActive(true);
+                                textClock2.SetActive(true);
+                                textClock3.SetActive(true);
+                                // textClock1.SetActive(!textClock1.activeSelf);
+                                // textClock2.SetActive(!textClock2.activeSelf);
+                                // textClock3.SetActive(!textClock3.activeSelf);
                                 break;
                             case "Text_Clock3":
-                                tvImage.SetActive(!tvImage.activeSelf);
+                                tvImage.SetActive(true);
+                                // tvImage.SetActive(!tvImage.activeSelf);
                                 break;
                         }
                     }
