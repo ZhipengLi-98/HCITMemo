@@ -32,6 +32,10 @@ public class MoveManager : MonoBehaviour
                 textMilk.SetActive(true);
             }
         }
+        if (!textRecord.activeSelf && textMilk.activeSelf && OVRInput.Get(OVRInput.Button.Two))
+        {
+            cam.transform.position = new Vector3(-1.361f, 0.89f, -29.2f);
+        }
         if (cam.transform.position.x < -100)
         {
             textRecord.transform.position = cam.transform.position + 10.0f * centereye.transform.forward;
@@ -41,5 +45,6 @@ public class MoveManager : MonoBehaviour
                 textRecord.SetActive(false);
             }
         }
+        
     }
 }
