@@ -24,6 +24,10 @@ public class LaserManager : MonoBehaviour
     public GameObject textNote1;
     public GameObject textNote2;
     public GameObject textNote3;
+    public GameObject textLaptopNote1;
+    public GameObject textLaptopNote2;
+    public GameObject textLaptopNote3;
+    public GameObject progressBar;
 
     private float timeGap;
 
@@ -112,6 +116,30 @@ public class LaserManager : MonoBehaviour
                                 {
                                     timeGap = 1.0f;
                                     textNote3.SetActive(false);
+                                }
+                                break;
+                            case "Laptop_On":
+                            case "Chair_DeskChair_Red":
+                            case "Chair_Office_Red":
+                            case "Plane":
+                                if (!progressBar.activeSelf)
+                                {
+                                    progressBar.SetActive(true);
+                                }
+                                if (!textLaptopNote1.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textLaptopNote1.SetActive(true);
+                                }
+                                else if (!textLaptopNote2.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textLaptopNote2.SetActive(true);
+                                }
+                                else if (!textLaptopNote3.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textLaptopNote3.SetActive(true);
                                 }
                                 break;
                         }
