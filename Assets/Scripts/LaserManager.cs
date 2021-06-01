@@ -19,6 +19,8 @@ public class LaserManager : MonoBehaviour
     public GameObject textClock3;
     public GameObject clock;
     public GameObject tvImage;
+    public GameObject phoneMemoImage;
+    public GameObject phoneZoomImage;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,10 @@ public class LaserManager : MonoBehaviour
                             case "Text_Clock3":
                                 tvImage.SetActive(true);
                                 // tvImage.SetActive(!tvImage.activeSelf);
+                                break;
+                            case "phone2k":
+                                phoneMemoImage.SetActive(false);
+                                phoneZoomImage.SetActive(true);
                                 break;
                         }
                     }
