@@ -24,7 +24,7 @@ public class MoveManager : MonoBehaviour
         float y = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y;
         cam.transform.position += (x / 10) * (centereye.transform.right);
         cam.transform.position += (y / 10) * (centereye.transform.forward);
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        if (OVRInput.Get(OVRInput.Button.One))
         {
             cam.transform.position = new Vector3(-115, 5, 2);
             if (!textRecord.activeSelf)
@@ -36,7 +36,7 @@ public class MoveManager : MonoBehaviour
         {
             textRecord.transform.position = cam.transform.position + 10.0f * centereye.transform.forward;
             textRecord.transform.rotation = Quaternion.LookRotation(centereye.transform.forward, centereye.transform.up);
-            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+            if (OVRInput.Get(OVRInput.Button.Two))
             {
                 textRecord.SetActive(false);
             }

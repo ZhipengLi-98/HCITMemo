@@ -81,7 +81,7 @@ public class LaserManager : MonoBehaviour
                                 break;
                             case "phone2k":
                                 phoneMemoImage.SetActive(false);
-                                phoneZoomImage.SetActive(true);
+                                // phoneZoomImage.SetActive(true);
                                 break;
                         }
                     }
