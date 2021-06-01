@@ -21,6 +21,11 @@ public class LaserManager : MonoBehaviour
     public GameObject tvImage;
     public GameObject phoneMemoImage;
     public GameObject phoneZoomImage;
+    public GameObject textNote1;
+    public GameObject textNote2;
+    public GameObject textNote3;
+
+    private float timeGap;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +44,8 @@ public class LaserManager : MonoBehaviour
         textClock2.SetActive(false);
         textClock3.SetActive(false);
         tvImage.SetActive(false);
+
+        timeGap = 1.0f;
     }
 
     // Update is called once per frame
@@ -50,13 +57,19 @@ public class LaserManager : MonoBehaviour
             laserLineRenderer.SetPosition(0, startPoint + OVRInput.GetLocalControllerPosition(controllerType));
             laserLineRenderer.SetPosition(1, startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward));
 
+            if (timeGap > 0)
+            {
+                timeGap -= Time.deltaTime;
+            }
+
             if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
                 RaycastHit hit;
-                if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 15f))
+                if (Physics.Raycast(startPoint + OVRInput.GetLocalControllerPosition(controllerType), startPoint + OVRInput.GetLocalControllerPosition(controllerType) + dist * (OVRInput.GetLocalControllerRotation(controllerType) * Vector3.forward), out hit, 150f))
                 {
                     if (hit.collider != null)
                     {
+                        Debug.Log(hit.transform.gameObject.name);
                         switch (hit.transform.gameObject.name)
                         {
                             case "PFB_Fridge":
@@ -83,14 +96,27 @@ public class LaserManager : MonoBehaviour
                                 phoneMemoImage.SetActive(false);
                                 // phoneZoomImage.SetActive(true);
                                 break;
+                            case "Plane (1)":
+                            case "Chair_Conference_Purple":
+                                if (textNote1.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textNote1.SetActive(false);
+                                }
+                                else if (textNote2.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textNote2.SetActive(false);
+                                }
+                                else if (textNote3.activeSelf && timeGap < 0)
+                                {
+                                    timeGap = 1.0f;
+                                    textNote3.SetActive(false);
+                                }
+                                break;
                         }
                     }
                 }
-            }
-
-            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
-            {
-                
             }
         }
     }
