@@ -28,6 +28,12 @@ public class LaserManager : MonoBehaviour
     public GameObject textLaptopNote2;
     public GameObject textLaptopNote3;
     public GameObject progressBar;
+    public GameObject textSticker1;
+    public GameObject textSticker2;
+    public GameObject textSticker3;
+    public GameObject textLaptopSticker1;
+    public GameObject textLaptopSticker2;
+    public GameObject textLaptopSticker3;
 
     private float timeGap;
 
@@ -106,16 +112,19 @@ public class LaserManager : MonoBehaviour
                                 {
                                     timeGap = 1.0f;
                                     textNote1.SetActive(false);
+                                    textSticker1.SetActive(false);
                                 }
                                 else if (textNote2.activeSelf && timeGap < 0)
                                 {
                                     timeGap = 1.0f;
                                     textNote2.SetActive(false);
+                                    textSticker2.SetActive(false);
                                 }
                                 else if (textNote3.activeSelf && timeGap < 0)
                                 {
                                     timeGap = 1.0f;
                                     textNote3.SetActive(false);
+                                    textSticker3.SetActive(false);
                                 }
                                 break;
                             case "Laptop_On":
@@ -130,16 +139,19 @@ public class LaserManager : MonoBehaviour
                                 {
                                     timeGap = 1.0f;
                                     textLaptopNote1.SetActive(true);
+                                    textLaptopSticker1.SetActive(true);
                                 }
                                 else if (!textLaptopNote2.activeSelf && timeGap < 0)
                                 {
                                     timeGap = 1.0f;
                                     textLaptopNote2.SetActive(true);
+                                    textLaptopSticker2.SetActive(true);
                                 }
                                 else if (!textLaptopNote3.activeSelf && timeGap < 0)
                                 {
                                     timeGap = 1.0f;
                                     textLaptopNote3.SetActive(true);
+                                    textLaptopSticker3.SetActive(true);
                                 }
                                 break;
                         }
